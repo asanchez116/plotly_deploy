@@ -100,18 +100,26 @@ function buildCharts(sample) {
       }
     };
     
-
+    var config = {responsive: true};
     // 8. Create the trace for the bar chart. 
     var barData = [{
       type: 'bar',
       x: sample_values,
       y: otu_ids,
       text: labels,
-      orientation: 'h'
+      orientation: 'h',
+      marker: {
+        color: 'rgb(158,202,225)',
+        opacity: 0.6,
+        line: {
+          color: 'rgb(8,48,107)',
+          width: 1.5
+        }
+      }
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-     title: "Top 10 Bacteria Cultures Found"
+     title: "Top 10 Bacteria Cultures Found",
     };
 
 
@@ -126,14 +134,15 @@ function buildCharts(sample) {
       text: otu_labels,
       mode: 'markers',
       marker: {
-        size: sample_values_all
-        
-      }};
+        size: sample_values_all,
+        color: ['#f3cec9', '#e7a4b6', '#cd7eaf', '#a262a9', '#6f4d96', '#3d3b72', '#182844']
+      }
+    };
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: "Bacteria Cultures per Sample (OTU)", 
-      showlegend: false 
+      showlegend: false,
     };
 
     // 3. Use Plotly to plot the data with the layout.
@@ -154,15 +163,16 @@ function buildCharts(sample) {
           axis: { range: [null, 10]},
         },
         steps: [
-          { range: [0, 250], color: "cyan" },
-          { range: [250, 400], color: "royalblue" }
+          { range: [0, 2], color: "cyan" },
+          { range: [3, 4], color: "royalblue" }
         ],
     }];
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
       paper_bgcolor: "white", 
-      font: {family: "Arial"}
+      font: {family: "Arial"},
+      colorway : ['#f3cec9', '#e7a4b6', '#cd7eaf', '#a262a9', '#6f4d96', '#3d3b72', '#182844']
 
     };
 
