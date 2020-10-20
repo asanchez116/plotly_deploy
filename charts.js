@@ -55,6 +55,7 @@ function buildMetadata(sample) {
 
 // 1. Create the buildCharts function.
 function buildCharts(sample) {
+  
   // 2. Use d3.json to load and retrieve the samples.json file 
   // d3.json("samples.json").then((data) => {
   d3.json("Samples.json").then(function(data){
@@ -68,14 +69,27 @@ function buildCharts(sample) {
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = data.samples[0].otu_ids;
     var otu_labels = data.samples[0].otu_labels.slice(0, 10);
-    var sample_values = data.samples[0].sample_values.slice(0, 10).reverse();
+    // var sample_values = data.samples[0].sample_values.slice(0, 10).reverse();
 
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
-    //  so the otu_ids with the most bacteria are last. 
-    var otu_top_ten = data.samples[0].otu_ids.slice(0, 10).reverse();
-    var otu_ids = otu_top_ten.map(d => "OTU " + d);
-    var labels = data.samples[0].otu_labels.slice(0, 10);
+    // so the otu_ids with the most bacteria are last. 
+    // var otu_top_ten = data.samples[0].otu_ids.slice(0, 10).reverse();
+    // var otu_ids = otu_top_ten.map(d => "OTU " + d);
+    // var labels = data.samples[0].otu_labels.slice(0, 10);
+
+    // if(data.samples[0].id == sample){
+    //   console.log(data.samples[0].sample_values.sort((a, b)=>b-a).slice(0, 10))
+    // }
+
+    for (i=0; i< data.samples.length; i++){
+      if (data.samples[i].id == sample){
+        var sample_values = data.samples[i].sample_values.sort((a, b)=> b-a).slice(0, 10).reverse();
+        var otu_top_ten = data.samples[i].otu_ids.slice(0, 10).reverse();
+        var otu_ids = otu_top_ten.map(d => "OTU " + d);
+        var labels = data.samples[i].otu_labels.slice(0, 10);
+      }
+    }
 
     // 8. Create the trace for the bar chart. 
     var barData = [{
