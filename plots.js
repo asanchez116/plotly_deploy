@@ -1,9 +1,7 @@
-var url = "http://127.0.0.1:8000/samples.json"
-
 function init(){
     var selector = d3.select("#selDataset");
 
-    d3.json(url).then(function(data){
+    d3.json("samples.json").then(function(data){
         console.log(data)
         var sampleNames = data.names;
         sampleNames.forEach(function(sample){
