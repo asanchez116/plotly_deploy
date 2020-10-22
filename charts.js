@@ -155,17 +155,22 @@ function buildCharts(sample) {
     var gaugeData = [{
         domain: {x:[0,1], y:[0,1]},
         value: wfreq, 
-        title: {text:"Belly Button Washing Freqnuency"},
+        title: {text:"Belly Button Washing Frequency<br><span style='font-size:0.8em;color:black'>Scrubs Per Week</span>"},
         type: "indicator",
         mode: "gauge+number",
-        bar: { color: "red" },
+        bar: { color: "white" },
         gauge: {
-          axis: { range: [null, 10]},
-        },
-        steps: [
-          { range: [0, 2], color: "cyan" },
-          { range: [3, 4], color: "royalblue" }
-        ],
+          axis: { range: [null, 10] },
+          steps: [
+            { range: [0, 2], color: "red" },
+            { range: [2, 4], color: "orange" },
+            { range: [4, 6], color: "yellow"},
+            { range: [6, 8], color: 'green'},
+            { range: [8, 10], color: "darkgreen"}
+          ],
+          
+          
+        }
     }];
     
     // 5. Create the layout for the gauge chart.
